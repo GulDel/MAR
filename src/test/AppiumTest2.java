@@ -15,6 +15,7 @@ public class AppiumTest2 {
 		//appActivity: "com.veripark.login.StartActivity"
 		obj.login();
 		System.out.println(obj.getOTP());
+		System.out.println("ekleme yaptım");
 		
 
 	}	

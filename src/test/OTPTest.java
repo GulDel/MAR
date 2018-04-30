@@ -49,6 +49,7 @@ public class OTPTest {
 			
 		}catch(MalformedURLException e) {
 			System.out.println(e.getMessage());
+			System.out.println("ekleme");
 		}	
 				
 		
