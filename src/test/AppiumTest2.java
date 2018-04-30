@@ -1,27 +1,22 @@
 package test;
 
 
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+
 public class AppiumTest2 {
 	
 
 	public static void main(String[] args) {
+			 
+		OTPTest otp_test = new OTPTest();
+		AndroidDriver <MobileElement> app_driver = otp_test.setupEnvironment();	
 		
-		 
-		OTPTest obj = new OTPTest();
-		obj.setUpEnvironment(obj.setDesiredCapabilities(), "com.veripark.mar.alpha", "com.veripark.login.StartActivity");	
-		 
+		otp_test.login(app_driver);
 		
-		//appPackage:"com.veripark.mar.alpha"
-		//appActivity: "com.veripark.login.StartActivity"
-		obj.login();
-		System.out.println(obj.getOTP());
-		System.out.println("ekleme yaptım");
-		
-
+		System.out.println(otp_test.getOTP(app_driver));
+			
 	}	
 		
-
-
-	
 }
 
