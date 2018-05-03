@@ -1,7 +1,10 @@
 package test;
 
+import java.util.List;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +25,8 @@ public class OTPTest {
 			caps.setCapability("platformVersion", "7.0");
 			caps.setCapability("autoGrantPermissions", true);
 			caps.setCapability("noReset", true);
-			caps.setCapability("appPackage", "com.veripark.mar.alpha");
+			//caps.setCapability("appPackage", "com.veripark.mar.alpha");
+			caps.setCapability("appPackage", "com.veripark.mar.demo");
 			caps.setCapability("appActivity", "com.veripark.login.StartActivity");
 			caps.setCapability("waitForActivity", "com.veripark.Login}");
 			
@@ -46,26 +50,36 @@ public class OTPTest {
 	public void login(AndroidDriver <MobileElement> driver) {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
-		MobileElement el1 = (MobileElement) driver.findElementById("com.veripark.mar.alpha:id/txtUserName");		
-		wait.until(ExpectedConditions.visibilityOf(el1));		
-		el1.click();
-		el1.sendKeys("naresh45");
 		
-		MobileElement el2 = (MobileElement) driver.findElementById("com.veripark.mar.alpha:id/txtPassword");
-		wait.until(ExpectedConditions.visibilityOf(el2));
-		el2.click();
-		el2.sendKeys("abcd1234");
-			
-		MobileElement el3 = (MobileElement) driver.findElementById("com.veripark.mar.alpha:id/button1");
-		wait.until(ExpectedConditions.visibilityOf(el3));
+		MobileElement el1 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/txtUserName");
+		MobileElement el2 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/txtPassword");
+		MobileElement el3 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/button1");
+		
+		
+		//wait.until(ExpectedConditions.visibilityOf(el3));
+		//wait.until(ExpectedConditions.visibilityOf(el2));
+		//wait.until(ExpectedConditions.visibilityOf(el3));
+				
+		el1.sendKeys("naresh45");
+		el2.sendKeys("abcd1234");	
 		el3.click();
 		
-		/*
-		MobileElement el4 = (MobileElement) driver.findElementById("com.veripark.mar.alpha:id/secondayPassword");
-		//el4.click();
+			
+				
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.veripark.mar.demo:id/secondayPassword")));
+		MobileElement el4 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/secondayPassword");
+		el4.sendKeys("13579");
 		
-		wait.until(ExpectedConditions.visibilityOf(el4));
-		*/
+		MobileElement el5 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/loginBtn");
+		el5.click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.veripark.mar.demo:id/cards_button")));
+		MobileElement el6 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/cards_button");
+		el6.click();
+		MobileElement el7 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TableLayout/android.widget.TableRow[3]/android.widget.ScrollView/android.widget.TableLayout/android.widget.TableRow[5]/android.widget.Button");
+		el7.click();
+		MobileElement el8 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TableLayout/android.widget.TableRow[3]/android.widget.ScrollView/android.widget.TableLayout/android.widget.TableRow[1]/android.widget.Button");
+		el8.click();
 			
 }
 

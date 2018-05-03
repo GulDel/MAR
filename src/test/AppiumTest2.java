@@ -14,7 +14,7 @@ public class AppiumTest2 {
 		
 		otp_test.login(app_driver);
 		
-		System.out.println(otp_test.getOTP(app_driver));
+		//System.out.println(otp_test.getOTP(app_driver));
 			
 	}	
 		
