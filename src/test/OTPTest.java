@@ -1,9 +1,7 @@
 package test;
 
-import java.util.List;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -11,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.Activity;
 import io.appium.java_client.android.AndroidDriver;
+
 
 public class OTPTest {	
 
@@ -25,6 +24,8 @@ public class OTPTest {
 			caps.setCapability("platformVersion", "7.0");
 			caps.setCapability("autoGrantPermissions", true);
 			caps.setCapability("noReset", true);
+			//caps.setCapability("locale", "en_US");
+			//caps.setCapability("language","en");
 			//caps.setCapability("appPackage", "com.veripark.mar.alpha");
 			caps.setCapability("appPackage", "com.veripark.mar.demo");
 			caps.setCapability("appActivity", "com.veripark.login.StartActivity");
@@ -51,35 +52,39 @@ public class OTPTest {
 
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		
-		MobileElement el1 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/txtUserName");
-		MobileElement el2 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/txtPassword");
-		MobileElement el3 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/button1");
+		MobileElement user_name = (MobileElement) driver.findElementById(Element.getUserName_id());
+		MobileElement password = (MobileElement) driver.findElementById(Element.getPassword_id());
+		MobileElement login_button = (MobileElement) driver.findElementById(Element.getLoginButton_id());
 		
 		
 		//wait.until(ExpectedConditions.visibilityOf(el3));
 		//wait.until(ExpectedConditions.visibilityOf(el2));
-		//wait.until(ExpectedConditions.visibilityOf(el3));
+		//wait.until(ExpectedConditions.visibilityOf(login_button));
 				
-		el1.sendKeys("naresh45");
-		el2.sendKeys("abcd1234");	
-		el3.click();
+		user_name.sendKeys("naresh45");
+		password.sendKeys("abcd1234");	
+		login_button.click();
 		
-			
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(Element.getSecondaryPassword_id())));
+		MobileElement otp_password = (MobileElement) driver.findElementById(Element.getSecondaryPassword_id());
+		otp_password.sendKeys("13579");
+		
 				
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.veripark.mar.demo:id/secondayPassword")));
-		MobileElement el4 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/secondayPassword");
-		el4.sendKeys("13579");
+		MobileElement second_login_button = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/loginBtn");
+		second_login_button.click();
 		
-		MobileElement el5 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/loginBtn");
-		el5.click();
 		
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("com.veripark.mar.demo:id/cards_button")));
-		MobileElement el6 = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/cards_button");
-		el6.click();
-		MobileElement el7 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TableLayout/android.widget.TableRow[3]/android.widget.ScrollView/android.widget.TableLayout/android.widget.TableRow[5]/android.widget.Button");
-		el7.click();
-		MobileElement el8 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.TableLayout/android.widget.TableRow[3]/android.widget.ScrollView/android.widget.TableLayout/android.widget.TableRow[1]/android.widget.Button");
-		el8.click();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.id(Element.getCardsIcon_id())));
+		MobileElement cardsIcon = (MobileElement) driver.findElementById(Element.getCardsIcon_id());
+		cardsIcon.click();
+		
+		MobileElement mmt_button = (MobileElement) driver.findElementByXPath(Element.getMmtIcon_xpath());
+		mmt_button.click();
+		
+		MobileElement enable_button = (MobileElement) driver.findElementByXPath(Element.getEnableButton_xpath());
+		enable_button.click();
 			
 }
 
