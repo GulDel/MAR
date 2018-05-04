@@ -71,7 +71,7 @@ public class OTPTest {
 		otp_password.sendKeys("13579");
 		
 				
-		MobileElement second_login_button = (MobileElement) driver.findElementById("com.veripark.mar.demo:id/loginBtn");
+		MobileElement second_login_button = (MobileElement) driver.findElementById(Element.getSecondaryPasswordButton_id());
 		second_login_button.click();
 		
 		
